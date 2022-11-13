@@ -1,4 +1,5 @@
 # https://replit.com/talk/learn/How-to-make-Rest-Api-in-Python/9038
+
 # Create webserver
 from flask import Flask
 from threading import Thread
@@ -9,12 +10,9 @@ app = Flask('')
 # Flask restful comes with an Api function that makes your life much better than with Flask only.
 api = Api(app)
 
-
-class CreateUrlInput(Resource):
-
+class Home(Resource):
   def get(self):
-    return jsonify_csv_input(1)
-
+    return "Hello, my dear friend!"
 
 class DoNothing(Resource):
 
@@ -29,14 +27,15 @@ class PrComment(Resource):
 
 
 class PrCommentsList(Resource):
-  def get(self, comment_list):
+
+  def post(self, comment_list):
     return get_many_comments_polarity(comment_list)
 
 
-api.add_resource(CreateUrlInput, '/')
+api.add_resource(Home, '/')
 api.add_resource(DoNothing, '/api/donothing/<string:word>')
 api.add_resource(PrComment, '/api/prcomment/<string:comment>')
-api.add_resource(PrCommentsList, '/api/prcommentlist/<string:comment_list>')
+# api.add_resource(PrCommentsList, '/api/prcommentlist/<string:comment_list>')
 
 
 def run():
