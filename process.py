@@ -19,4 +19,12 @@ def get_file_polarity():
   return comments.to_json()
 
 def get_comment_polarity(comment):
-  return TextBlob(comment).sentiment.polarity
+  return {
+    "COMMENT": comment,
+    "POLARITY": TextBlob(comment).sentiment.polarity
+  }
+
+def get_many_comments_polarity(comment_list):
+  return [get_comment_polarity(comment) for comment in comment_list]
+     
+  
